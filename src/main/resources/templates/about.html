@@ -26,7 +26,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link">Новости туризма</a>
+                <a href="/hello" class="nav-link">Новости туризма</a>
             </li>
             <li class="nav-item">
                 <a href="/about" class="nav-link">О проекте</a>
@@ -44,22 +44,38 @@
 
 <!-- START SECTION-->
 <div class="container">
-    <div class="row" style="margin: 20px" th:each="news, stat : ${news}">
-            <div class="card hoverable cyan darken-2" style="width: 100%">
-                <div class="card-header">
-                    <h5 class="card-title" th:text="${news.getLabel()}"></h5>
-                </div>
-                <div class="d-flex flex-row justify-content-between">
-                    <div class="m-3" style="flex-gro:1"><img style="max-height: 200px; max-width: 320px" th:src="@{'/img/'+${news.getPathImage()}}" alt="..."></div>
-                    <div class="m-3" style="flex-grow:1" th:utext="${news.getTextNewsWithBBCodeToHtml()}"></div>
-                </div>
-                <div class="card-footer text-muted">
-                    <span class="card-title" th:text="${news.getDateOfCreationSimple()}"></span>
+    <div class="card hoverable cyan darken-2" style="width: 100%">
+        <div class="card-header" style="text-align: center">
+            <h4>МИНИСТЕРСТВО ТРАНСПОРТА РОССИЙСКОЙ ФЕДЕРАЦИИ</h4>
+            <h4>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ</h4>
+            <h4>ОБРАЗОВАТЕЛЬНОЕ</h4>
+            <h4>УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ</h4>
+            <h4>«РОССИЙСКИЙ УНИВЕРСИТЕТ ТРАНСПОРТА (МИИТ)»</h4>
+            <h4>(РУТ (МИИТ)</h4>
+            <h5 class="card-title">Курсовой проект по дисциплине: "Основы построения защищенных баз данных"</h5>
+            <h5 class="card-title">На тему: "Создание новостного блока сайта туристической компании"</h5>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+            <div class="m-3" style="flex-gro:1">
+                <img style="max-height: 200px; max-width: 320px" th:src="@{/img/roat.jpg}" alt="...">
+            </div>
+            <div class="m-3" style="flex-grow:1">
+                <div>Выполнил:</div>
+                <div>студент 2 курса</div>
+                <div>Сенько Леонид Сергеевич</div>
+                <div>1810-ПИм-2263</div>
+                <div>Проверил:</div>
+                <div>д.т.н. - Коптева Лариса Георгиевна</div>
+                <div>Ссылка на GitHub с проектом: <a href="https://github.com/SenkoLS/news">https://github.com/SenkoLS/news</a>
                 </div>
             </div>
+        </div>
+        <div class="card-footer text-muted text-center">
+            <div class="font-weight-bold">Москва 2020</div>
+        </div>
     </div>
 </div>
-<footer th:include="fragments/footer::footer"></footer>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

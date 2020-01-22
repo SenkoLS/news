@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
-import org.springframework.web.util.HtmlUtils;
 import ru.news.domains.News;
 import ru.news.repos.NewsRepo;
 
@@ -46,10 +45,10 @@ public class NewsController {
     @GetMapping("/getedit/{idNews}")
     public String getEditFormWithNews(HttpServletRequest httpServletRequest,
                                       Model model,
-                                      @PathVariable("idNews") Long idNews){
+                                      @PathVariable("idNews") Long idNews) {
 
         News news = newsRepo.findByIdNewsEquals(idNews);
-        model.addAttribute("news",news);
+        model.addAttribute("news", news);
         return "editnews";
     }
 
@@ -61,11 +60,10 @@ public class NewsController {
                                  @RequestParam("image_news") MultipartFile imageFile,
                                  @RequestParam("id_news") Long idNews) throws IOException {
 
-
         News news = newsRepo.findByIdNewsEquals(idNews);
         news.setLabel(label);
         news.setTextNews(textNews);
-        if(!imageFile.getOriginalFilename().equalsIgnoreCase("")){
+        if (!imageFile.getOriginalFilename().equalsIgnoreCase("")) {
             byte[] bytes = imageFile.getBytes();
             Map<String, String> propFileImage = getUniquePathPropFileImage(imageFile);
             Files.write(Paths.get(propFileImage.get("path")), bytes);
@@ -83,8 +81,6 @@ public class NewsController {
                                 @RequestParam("text_news") String textNews,
                                 @RequestParam("image_news") MultipartFile imageFile) throws IOException {
 
-        label = HtmlUtils.htmlEscape(label);
-        textNews = HtmlUtils.htmlEscape(textNews);
         byte[] bytes = imageFile.getBytes();
         Map<String, String> propFileImage = getUniquePathPropFileImage(imageFile);
         Files.write(Paths.get(propFileImage.get("path")), bytes);

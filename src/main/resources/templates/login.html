@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
-    <title>HelpMeDo</title>
+    <title>Новости туризма</title>
     <script src='https://www.google.com/recaptcha/api.js?render=6LcdnI0UAAAAAG9qsJr5-x7fxeZEyoTYmvSS-KvY'></script>
 </head>
 <body class="wrapper">
@@ -19,7 +19,7 @@
         <div class="row justify-content-center align-items-center flogin">
             <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 colorflogin">
                 <div class="acenter">
-                    <img th:src="@{/img/logo.png}" class="logo_form_login">
+                    <a href="/"><img th:src="@{/img/logo.png}" class="logo_form_login"></a>
                     <p>Панель модератора</p>
                 </div>
                 <form class="form_login" th:action="@{/login}" method="post">
