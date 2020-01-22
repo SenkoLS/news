@@ -1,0 +1,100 @@
+body.wrapper {
+    background: url("/img/body.wrapper.png") center;
+    background-size: auto;
+    background-size: 228px 228px;
+}
+
+.form_login {
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.form_reg {
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.colorflogin {
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    padding: 5vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.acenter {
+    text-align: center;
+}
+
+.color_link_login_reg {
+    color: darkgreen;
+}
+
+.logo_form_login {
+    width: 110px;
+    height: 110px;
+}
+
+.color_invalid {
+    color: #E06666;
+}
+
+.flogin {
+    min-height: 90vh;
+}
+
+
+.content h1 {
+    font-size: 90px;
+    line-height: 72px;
+    margin-bottom: 20px;
+}
+
+.desktop-only {
+    display: block;
+}
+
+.image_startpage {
+    height: auto;
+    max-width: 100%;
+    width: auto;
+}
+
+
+.two {
+    background: #FFFFFF;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.two h1 {
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    color: #5C2610;
+    font-size: 3em;
+    font-weight: normal;
+    line-height: 1;
+    padding: 10px 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.two h1:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 200%;
+    border-radius: 50%/30%;
+    border: 6px solid #5C2610;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+@media (max-width: 420px) {
+    .two h1 {
+        font-size: 2em;
+    }
+}
+

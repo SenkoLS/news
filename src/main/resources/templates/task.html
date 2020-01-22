@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:include="fragments/head::head"></head>
+<body>
+<header th:include="fragments/header::header"></header>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Дата создания задачи</th>
+        <th scope="col">Наименование задачи</th>
+        <th scope="col">Дата закрытия задачи</th>
+        <th scope="col">Статус задачи</th>
+        <th scope="col">Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:utext="${usertask.getDateOfCreation()}"/>
+        <td th:utext="${usertask.getTaskName()}"/>
+        <td th:utext="${usertask.getClosingDate()}"/>
+        <td th:utext="${usertask.getDirectoryTaskStatuses().getNameStatus()}"/>
+        <td>
+
+            <form class="form_reg" action="#" th:action="@{'/task/delete/'+${usertask.getIdUserTasks()}}" th:method="POST">
+                <div class="form-group">
+                    <input type="submit" class="form-control" id="submit" value="Удалить"/>
+                </div>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

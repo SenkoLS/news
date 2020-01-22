@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:include="fragments/head::head"></head>
+<body>
+<header th:include="fragments/header::header"></header>
+<div class="container">
+<div class="row" th:each="userTaskList, stat : ${listUserTasks}">
+    <div class="col s12 m6" th:each="userTask : ${userTaskList}">
+        <div class="card hoverable cyan darken-2">
+            <div class="card-content white-text">
+                <span class="card-title" th:text="'Задача: '+${userTask.getTaskName()}+'. Дата создания: '+${userTask.getDateOfCreation()}"></span>
+                <p>Describtion of the task!</p>
+                <p th:text="'Статус: '+${userTask.getDirectoryTaskStatuses().getNameStatus()}"></p>
+                <p th:text="'Дата завершения: ' + ${userTask.getClosingDate()}"></p>
+            </div>
+            <div class="card-action">
+                <a th:href="@{'/task/' + ${userTask.getIdUserTasks()}}">
+                    <i class="small material-icons">edit</i>
+                </a>
+                <a th:href="@{'/task/' + ${userTask.getIdUserTasks()}}">
+                    <i class="small material-icons">attach_file</i>
+                </a>
+                <a th:href="@{'/task/' + ${userTask.getIdUserTasks()}}">
+                    <i class="small material-icons">delete</i>
+                </a>
+                <a th:href="@{'/task/' + ${userTask.getIdUserTasks()}}">
+                    <i class="small material-icons">find_in_page</i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<footer th:include="fragments/footer::footer"></footer>
+</body>
+</html>

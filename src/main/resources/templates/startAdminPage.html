@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="fragments/head::head"></head>
+<body class="wrapper">
+<header th:include="fragments/header::header"></header>
+
+<!-- START SECTION-->
+<div class="container">
+    <div class="row" style="margin: 20px" th:each="news, stat : ${news}">
+            <div class="card hoverable blue lighten-5" style="width: 100%">
+                <div class="card-header">
+                    <h5 class="card-title" th:text="${news.getLabel()}"></h5>
+                </div>
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="m-3" style="flex-grow:1"><img style="max-height: 200px; max-width: 320px" th:src="@{'/img/'+${news.getPathImage()}}" alt="..."></div>
+                    <div class="m-3" style="flex-grow:1" th:utext="${news.getTextNews()}"></div>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="card-title" th:text="${news.getDateOfCreationSimple()}"></span>
+                    <a th:href="'/news/getedit/'+${news.getIdNews()}">
+                        <i class="medium material-icons">edit</i>
+                    </a>
+                    <a th:href="@{'/news/delete/' + ${news.getIdNews()}}">
+                        <i class="medium material-icons">delete_forever</i>
+                    </a>
+                    <a href="/news/addnews">
+                        <i class="medium material-icons">note_add</i>
+                    </a>
+                </div>
+            </div>
+    </div>
+</div>
+<footer th:include="fragments/footer::footer"></footer>
+</body>
+</html>

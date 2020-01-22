@@ -1,0 +1,64 @@
+<div th:fragment="footer" style="background-color: green" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+
+    <nav aria-label="Пагинация">
+        <ul class="pagination justify-content-center">
+
+            <li th:attr="class=${pagination.isTheFirstPage()}?'page-item disabled':'page-item'">
+                <a class="page-link" th:href="${pagination.getFirstPageLink()}">
+                    Первая
+                </a>
+            </li>
+
+            <li th:attr="class=${pagination.isTheFirstPage()}?'page-item disabled':'page-item'">
+                <a class="page-link" th:href="${pagination.getPreviousPageLink()}" aria-label="Предыдущая">
+                    <span aria-hidden="true">«</span>
+                    <span class="sr-only">Предыдущая</span>
+                </a>
+            </li>
+
+            <!--The first tab-->
+            <li th:attr="class=${pagination.isTheFirstButtonActive()}?'page-item active':'page-item'">
+                <a class="page-link" th:href="${pagination.getNumber1ButtonLink()}"
+                   th:utext="${pagination.getNumber1Button()}"></a>
+            </li>
+
+            <!--The second tab-->
+            <li th:attr="class=${pagination.isTheSecondButtonActive()}?'page-item active':'page-item',
+                        hidden=${pagination.getNumber2Button().equals('')?'true':'false'}">
+                <a class="page-link" th:href="${pagination.getNumber2ButtonLink()}"
+                   th:utext="${pagination.getNumber2Button()}"></a>
+            </li>
+
+            <!--The third tab-->
+            <li th:attr="class=${pagination.isTheThirdButtonActive()}?'page-item active':'page-item',
+                        hidden=${pagination.getNumber3Button().equals('')?'true':'false'}">
+                <a class="page-link" th:href="${pagination.getNumber3ButtonLink()}"
+                   th:utext="${pagination.getNumber3Button()}"></a>
+            </li>
+
+            <li th:attr="class=${pagination.isTheLastPage()}?'page-item disabled':'page-item'">
+                <a class="page-link" th:href="${pagination.getNextPageLink()}" aria-label="Следующая">
+                    <span aria-hidden="true">»</span>
+                    <span class="sr-only">Следующая</span>
+                </a>
+            </li>
+
+            <li th:attr="class=${pagination.isTheLastPage()}?'page-item disabled':'page-item'">
+                <a class="page-link" th:href="${pagination.getLastPageLink()}">
+                    Последняя
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>

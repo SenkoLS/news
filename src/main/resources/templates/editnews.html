@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="fragments/head::head"></head>
+<body class="wrapper">
+<header th:include="fragments/header::header"></header>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row justify-content-center align-items-center flogin">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 colorflogin">
+                <div class="acenter">
+                    <p>Редактировать новость:</p>
+                </div>
+                <form class="form_reg" th:action="@{/news/editnews}" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="label" class="form-control" id="label" aria-describedby="Краткий заголовок"
+                               th:value="${news.getLabel()}" name="label" required/>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10"
+                                  name="text_news" th:text="${news.getTextNews()}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control" id="filenews" placeholder="Изображение для новости:"
+                               name="image_news"/>
+                    </div>
+                    <input type="hidden" name="id_news" th:value="${news.getIdNews()}"/>
+                    <input type="submit" class="btn btn-primary btn-block btn-success" value="СОХРАНИТЬ"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
