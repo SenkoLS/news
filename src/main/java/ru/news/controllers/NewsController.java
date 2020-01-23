@@ -8,10 +8,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 import ru.news.domains.News;
 import ru.news.repos.NewsRepo;
+import ru.news.util.GetApplicationPaths;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -58,7 +58,7 @@ public class NewsController {
                                  @RequestParam("label") String label,
                                  @RequestParam("text_news") String textNews,
                                  @RequestParam("image_news") MultipartFile imageFile,
-                                 @RequestParam("id_news") Long idNews) throws IOException {
+                                 @RequestParam("id_news") Long idNews) throws Exception {
 
         News news = newsRepo.findByIdNewsEquals(idNews);
         news.setLabel(label);
@@ -79,7 +79,7 @@ public class NewsController {
                                 Model model,
                                 @RequestParam("label") String label,
                                 @RequestParam("text_news") String textNews,
-                                @RequestParam("image_news") MultipartFile imageFile) throws IOException {
+                                @RequestParam("image_news") MultipartFile imageFile) throws Exception {
 
         byte[] bytes = imageFile.getBytes();
         Map<String, String> propFileImage = getUniquePathPropFileImage(imageFile);
@@ -88,22 +88,18 @@ public class NewsController {
         return new RedirectView("/adminpanel");
     }
 
-    private Map<String, String> getUniquePathPropFileImage(@RequestParam("image_news") MultipartFile imageFile) throws IOException {
-        File file = File.createTempFile(getPathForUploadImageFile() + imageFile.getOriginalFilename(), "");
+    private Map<String, String> getUniquePathPropFileImage(@RequestParam("image_news") MultipartFile imageFile) throws Exception {
         Map<String, String> propFileImage = new HashMap<>();
-        if (!file.exists()) {
-            propFileImage.put("path", getPathForUploadImageFile() + imageFile.getOriginalFilename());
-            propFileImage.put("uniqueNameFile", imageFile.getOriginalFilename());
-        } else {
-            String uniqueNameFile = String.valueOf(1 + new Random().nextInt(1000)) + imageFile.getOriginalFilename();
-            propFileImage.put("path", getPathForUploadImageFile() + uniqueNameFile);
-            propFileImage.put("uniqueNameFile", uniqueNameFile);
-        }
+        String uniqueNameFile = String.valueOf(1 + new Random().nextInt(1000)) + imageFile.getOriginalFilename();
+        propFileImage.put("path", GetApplicationPaths.getApplicationImagesPath() + uniqueNameFile);
+        propFileImage.put("uniqueNameFile", uniqueNameFile);
+
         return propFileImage;
     }
 
-    private String getPathForUploadImageFile() {
-        String pathUploadFile = this.getClass().getResource("").getPath();
-        return pathUploadFile.substring(1, pathUploadFile.indexOf("classes")) + "classes/static/img/";
+    private String getFolder() throws Exception {
+        String folder = System.getProperty("user.dir") + "\\IMG_NEWS_PROJECT\\";
+        new File(folder).mkdir();
+        return folder;
     }
 }
