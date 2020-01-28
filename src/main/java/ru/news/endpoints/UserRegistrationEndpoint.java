@@ -74,10 +74,11 @@ public class UserRegistrationEndpoint {
         if (!userRepo.existsByLoginEquals(userLogin)) {
             User user = new User(userLogin, passwordEncoder().encode(userPassword), firstName, lastName,
                     0, passwordEncoder().encode(userLogin), ZonedDateTime.now());
-            //Сохранение пользователя в БД
-            userRepo.save(user);
+
             //Отправка почты для подтверждения аккаунта
             if (sendMail(httpRequest, user.getLogin(), user.getToken())) {
+                //Сохранение пользователя в БД
+                userRepo.save(user);
                 return new MessageCreator(MessageCreator.Status.OK,
                         "Регистрация прошла успешно! Проверьте вашу электронную почту и подтвердите регистрацию.");
             } else {
@@ -106,7 +107,7 @@ public class UserRegistrationEndpoint {
         //Формируем URI REST sendEmail
         String uriRestEmail = "/sendEmail?recipient=" +
                 recipient + "&subject=" +
-                new String("Подтверждение учетной записи HelpMeDo".getBytes(), "UTF-8") +
+                new String("Подтверждение учетной записи NEWS".getBytes(), "UTF-8") +
                 "&approweLink=" + approweLink;
 
         //Формируем URL REST sendEmail
